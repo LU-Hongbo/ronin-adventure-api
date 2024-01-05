@@ -1,11 +1,12 @@
 package hongbo.studybackend.service
 
+import hongbo.studybackend.repository.BlogRepository
 import org.springframework.stereotype.Service
 
 @Service
-class BlogService {
+class BlogService(
+    private val repository: BlogRepository
+) {
 
-    fun getMainBlog(): String {
-        TODO()
-    }
+    fun getMainBlog() = repository.getMainBlog()
 }
