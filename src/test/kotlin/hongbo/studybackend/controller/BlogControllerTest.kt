@@ -1,13 +1,13 @@
 package hongbo.studybackend.controller
 
+import hongbo.studybackend.fixture.BlogFixture
 import hongbo.studybackend.service.BlogService
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mockito.`when`
 import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
-import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -15,8 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPat
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @ExtendWith(MockitoExtension::class)
-@SpringBootTest(classes = [BlogController::class])
-@AutoConfigureMockMvc
+@WebMvcTest(value = [BlogController::class])
 class BlogControllerTest {
 
     companion object {
@@ -24,19 +23,19 @@ class BlogControllerTest {
     }
 
     @Autowired
-    lateinit var mockMvc: MockMvc
+    private lateinit var mockMvc: MockMvc
 
     @MockBean
-    lateinit var service: BlogService
+    private lateinit var service: BlogService
 
     @Test
-    fun `should return main blog list`() {
-        `when`(service.getMainBlog()).thenReturn("TWKS")
+    fun `should return main blog`() {
+        `when`(service.getMainBlog()).thenReturn(BlogFixture.blog)
 
         mockMvc.perform(
             get(BASE_PATH)
         )
             .andExpect(status().isOk)
-            .andExpect(jsonPath("$").value("TWKS"))
+            .andExpect(jsonPath("$.name").value("TWKS"))
     }
 }
