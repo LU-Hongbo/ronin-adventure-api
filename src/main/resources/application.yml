@@ -1,4 +1,7 @@
 spring:
+  config:
+    import:
+      optional:file:./local/.env[.properties]
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: ${DB_USERNAME}
@@ -9,3 +12,5 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+  application:
+    name: ${APPLICATION_NAME}
