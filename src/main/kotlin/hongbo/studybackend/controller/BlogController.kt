@@ -1,7 +1,8 @@
 package hongbo.studybackend.controller
 
 import hongbo.studybackend.controller.request.BlogCreateRequest
-import hongbo.studybackend.entity.Blog
+import hongbo.studybackend.controller.response.BlogResponse
+import hongbo.studybackend.controller.response.BlogResponse.Companion.toResponse
 import hongbo.studybackend.service.BlogService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,13 +20,13 @@ class BlogController(
 ) {
 
     @GetMapping("/{id}")
-    fun getMainBlog(@PathVariable id: Long): Blog {
-        return service.getMainBlog(id)
+    fun getMainBlog(@PathVariable id: Long): BlogResponse {
+        return service.getMainBlog(id).toResponse()
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody blogCreateRequest: BlogCreateRequest): Blog {
-        return service.create(blogCreateRequest)
+    fun create(@RequestBody blogCreateRequest: BlogCreateRequest): BlogResponse {
+        return service.create(blogCreateRequest).toResponse()
     }
 }
