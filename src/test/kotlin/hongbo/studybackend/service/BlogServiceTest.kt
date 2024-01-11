@@ -32,9 +32,9 @@ class BlogServiceTest {
         fun `should return main blog`() {
             `when`(repository.getReferenceById(any())).thenReturn(blog)
 
-            val result = service.getMainBlog()
+            val result = service.getMainBlog(blog.id)
 
-            assertEquals("TWKS", result.name)
+            assertEquals(blog.name, result.name)
         }
     }
 

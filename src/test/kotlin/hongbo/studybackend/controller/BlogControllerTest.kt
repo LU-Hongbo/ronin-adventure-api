@@ -42,11 +42,11 @@ class BlogControllerTest {
 
         @Test
         fun `should return main blog`() {
-            `when`(service.getMainBlog()).thenReturn(blog)
+            `when`(service.getMainBlog(any())).thenReturn(blog)
 
             mockMvc
                 .perform(
-                    get(BASE_PATH)
+                    get("$BASE_PATH/1")
                 )
                 .andExpect(status().isOk)
         }

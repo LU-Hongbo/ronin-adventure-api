@@ -5,6 +5,7 @@ import hongbo.studybackend.entity.Blog
 import hongbo.studybackend.service.BlogService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,9 +18,9 @@ class BlogController(
     private val service: BlogService
 ) {
 
-    @GetMapping
-    fun getMainBlog(): Blog {
-        return service.getMainBlog()
+    @GetMapping("/{id}")
+    fun getMainBlog(@PathVariable id: Long): Blog {
+        return service.getMainBlog(id)
     }
 
     @PostMapping

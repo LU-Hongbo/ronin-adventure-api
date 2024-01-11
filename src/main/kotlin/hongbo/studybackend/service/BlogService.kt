@@ -10,7 +10,9 @@ class BlogService(
     private val repository: BlogRepository
 ) {
 
-    fun getMainBlog(): Blog = repository.getReferenceById(1)
+    fun getMainBlog(id: Long): Blog {
+        return repository.getReferenceById(id)
+    }
 
     fun create(request: BlogCreateRequest): Blog {
         val blog = Blog(
