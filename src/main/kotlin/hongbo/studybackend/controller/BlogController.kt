@@ -6,6 +6,7 @@ import hongbo.studybackend.controller.response.BlogResponse
 import hongbo.studybackend.controller.response.BlogResponse.Companion.toResponse
 import hongbo.studybackend.service.BlogService
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -35,5 +36,10 @@ class BlogController(
     @PutMapping
     fun update(@RequestBody blogUpdateRequest: BlogUpdateRequest): BlogResponse {
         return service.update(blogUpdateRequest).toResponse()
+    }
+
+    @DeleteMapping("/{id}")
+    fun deleteById(@PathVariable id: Long) {
+        service.deleteById(id)
     }
 }

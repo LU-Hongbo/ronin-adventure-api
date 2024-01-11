@@ -29,4 +29,12 @@ class BlogService(
 
         return repository.save(request.toEntity())
     }
+
+    fun deleteById(id: Long) {
+        if (repository.findById(id).isEmpty) {
+            throw IllegalArgumentException()
+        }
+
+        repository.deleteById(id)
+    }
 }

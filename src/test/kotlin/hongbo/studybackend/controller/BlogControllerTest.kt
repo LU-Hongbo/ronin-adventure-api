@@ -9,11 +9,13 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mockito.`when`
 import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.any
+import org.mockito.kotlin.doNothing
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
@@ -83,6 +85,22 @@ class BlogControllerTest {
                     put(BASE_PATH)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(BlogFixture.updateRequest))
+                )
+                .andExpect(status().isOk)
+        }
+    }
+
+    @Nested
+    inner class WhenDelete {
+
+        @Test
+        fun `should delete blog given id`() {
+            val nonexistentId = 1
+            doNothing().`when`(service).deleteById(any())
+
+            mockMvc
+                .perform(
+                    delete("$BASE_PATH/{id}", nonexistentId)
                 )
                 .andExpect(status().isOk)
         }

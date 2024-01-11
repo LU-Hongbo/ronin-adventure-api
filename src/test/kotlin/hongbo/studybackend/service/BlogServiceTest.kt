@@ -10,6 +10,9 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mockito.`when`
 import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.any
+import org.mockito.kotlin.doNothing
+import org.mockito.kotlin.never
+import org.mockito.kotlin.verify
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -74,6 +77,32 @@ class BlogServiceTest {
 
             assertThrows<IllegalArgumentException> {
                 service.update(BlogFixture.updateRequest.copy(id = nonexistentId))
+            }
+        }
+    }
+
+    @Nested
+    inner class WhenDelete {
+
+        @Test
+        fun `should return deleted blog given blog with existing id`() {
+            `when`(repository.findById(any())).thenReturn(Optional.of(blog))
+            doNothing().`when`(repository).deleteById(any())
+
+            service.deleteById(blog.id)
+
+            verify(repository).deleteById(blog.id)
+        }
+
+        @Test
+        fun `should throw error if blog not exist`() {
+            val nonexistentId: Long = 10
+            `when`(repository.findById(any())).thenReturn(Optional.empty())
+
+            assertThrows<IllegalArgumentException> {
+                service.update(BlogFixture.updateRequest.copy(id = nonexistentId))
+
+                verify(repository, never()).deleteById(blog.id)
             }
         }
     }
