@@ -41,8 +41,8 @@ class BlogControllerTest {
     inner class WhenQuery {
 
         @Test
-        fun `should return main blog`() {
-            `when`(service.getMainBlog(any())).thenReturn(blog)
+        fun `should return blog given id`() {
+            `when`(service.getById(any())).thenReturn(blog)
 
             mockMvc
                 .perform(
@@ -56,7 +56,7 @@ class BlogControllerTest {
     inner class WhenCreate {
 
         @Test
-        fun `should return 201 if create blog successfully`() {
+        fun `should create blog successfully`() {
             `when`(service.create(any())).thenReturn(blog)
 
             mockMvc

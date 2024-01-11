@@ -20,8 +20,8 @@ class BlogController(
 ) {
 
     @GetMapping("/{id}")
-    fun getMainBlog(@PathVariable id: Long): BlogResponse {
-        return service.getMainBlog(id).toResponse()
+    fun getById(@PathVariable id: Long): BlogResponse {
+        return service.getById(id).toResponse()
     }
 
     @PostMapping

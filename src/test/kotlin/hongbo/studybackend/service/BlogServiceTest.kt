@@ -29,10 +29,10 @@ class BlogServiceTest {
     inner class WhenQuery {
 
         @Test
-        fun `should return main blog`() {
+        fun `should return blog given id`() {
             `when`(repository.getReferenceById(any())).thenReturn(blog)
 
-            val result = service.getMainBlog(blog.id)
+            val result = service.getById(blog.id)
 
             assertEquals(blog.name, result.name)
         }
