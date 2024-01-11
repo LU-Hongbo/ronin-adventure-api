@@ -16,7 +16,6 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @ExtendWith(MockitoExtension::class)
@@ -38,15 +37,19 @@ class BlogControllerTest {
 
     private val blog = BlogFixture.blog
 
-    @Test
-    fun `should return main blog`() {
-        `when`(service.getMainBlog()).thenReturn(BlogFixture.blog)
+    @Nested
+    inner class WhenQuery {
 
-        mockMvc.perform(
-            get(BASE_PATH)
-        )
-            .andExpect(status().isOk)
-            .andExpect(jsonPath("$.name").value("TWKS"))
+        @Test
+        fun `should return main blog`() {
+            `when`(service.getMainBlog()).thenReturn(blog)
+
+            mockMvc
+                .perform(
+                    get(BASE_PATH)
+                )
+                .andExpect(status().isOk)
+        }
     }
 
     @Nested

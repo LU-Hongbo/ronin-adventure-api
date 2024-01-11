@@ -18,7 +18,9 @@ class BlogController(
 ) {
 
     @GetMapping
-    fun getMainBlog() = service.getMainBlog()
+    fun getMainBlog(): Blog {
+        return service.getMainBlog()
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

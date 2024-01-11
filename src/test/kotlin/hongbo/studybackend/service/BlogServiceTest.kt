@@ -25,15 +25,18 @@ class BlogServiceTest {
 
     private val blog = BlogFixture.blog
 
-    @Test
-    fun `should return main blog`() {
-        `when`(repository.getReferenceById(any())).thenReturn(BlogFixture.blog)
+    @Nested
+    inner class WhenQuery {
 
-        val result = service.getMainBlog()
+        @Test
+        fun `should return main blog`() {
+            `when`(repository.getReferenceById(any())).thenReturn(blog)
 
-        assertEquals("TWKS", result.name)
+            val result = service.getMainBlog()
+
+            assertEquals("TWKS", result.name)
+        }
     }
-
 
     @Nested
     inner class WhenCreate {
