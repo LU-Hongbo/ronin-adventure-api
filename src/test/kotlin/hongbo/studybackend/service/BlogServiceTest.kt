@@ -34,12 +34,22 @@ class BlogServiceTest {
     inner class WhenQuery {
 
         @Test
-        fun `should return blog given id`() {
-            `when`(repository.getReferenceById(any())).thenReturn(blog)
+        fun `should return blog given existent blog id`() {
+            `when`(repository.findById(any())).thenReturn(Optional.of(blog))
 
             val result = service.getById(blog.id)
 
             assertEquals(blog.name, result.name)
+        }
+
+        @Test
+        fun `should throw error given nonexistent blog id`() {
+            val nonexistentId = 10L
+            `when`(repository.findById(any())).thenReturn(Optional.empty())
+
+            assertThrows<IllegalArgumentException> {
+                service.getById(nonexistentId)
+            }
         }
     }
 

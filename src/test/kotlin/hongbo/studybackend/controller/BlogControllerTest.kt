@@ -49,7 +49,7 @@ class BlogControllerTest {
 
             mockMvc
                 .perform(
-                    get("$BASE_PATH/1")
+                    get("$BASE_PATH/{id}", blog.id)
                 )
                 .andExpect(status().isOk)
         }

@@ -12,7 +12,11 @@ class BlogService(
 ) {
 
     fun getById(id: Long): Blog {
-        return repository.getReferenceById(id)
+        val blog = repository.findById(id)
+        if (blog.isEmpty) {
+            throw IllegalArgumentException()
+        }
+        return blog.get()
     }
 
     fun create(request: BlogCreateRequest): Blog {
