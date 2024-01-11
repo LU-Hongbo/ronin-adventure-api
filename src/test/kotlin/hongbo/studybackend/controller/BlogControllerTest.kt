@@ -16,6 +16,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @ExtendWith(MockitoExtension::class)
@@ -66,6 +67,24 @@ class BlogControllerTest {
                         .content(objectMapper.writeValueAsString(BlogFixture.createRequest))
                 )
                 .andExpect(status().isCreated)
+        }
+    }
+
+    @Nested
+    inner class WhenUpdate {
+
+        @Test
+        fun `should return updated blog given new blog`() {
+            val updated = BlogFixture.generate(id = 1, name = "AAPL")
+            `when`(service.update(any())).thenReturn(updated)
+
+            mockMvc
+                .perform(
+                    put(BASE_PATH)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(BlogFixture.updateRequest))
+                )
+                .andExpect(status().isOk)
         }
     }
 }

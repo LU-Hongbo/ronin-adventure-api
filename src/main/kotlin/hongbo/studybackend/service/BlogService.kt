@@ -1,6 +1,7 @@
 package hongbo.studybackend.service
 
 import hongbo.studybackend.controller.request.BlogCreateRequest
+import hongbo.studybackend.controller.request.BlogUpdateRequest
 import hongbo.studybackend.entity.Blog
 import hongbo.studybackend.repository.BlogRepository
 import org.springframework.stereotype.Service
@@ -19,5 +20,13 @@ class BlogService(
             name = request.name
         )
         return repository.save(blog)
+    }
+
+    fun update(request: BlogUpdateRequest): Blog {
+        if (repository.findById(request.id).isEmpty) {
+            throw IllegalArgumentException()
+        }
+
+        return repository.save(request.toEntity())
     }
 }

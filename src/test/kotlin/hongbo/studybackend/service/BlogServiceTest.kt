@@ -5,6 +5,7 @@ import hongbo.studybackend.repository.BlogRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mockito.`when`
 import org.mockito.junit.jupiter.MockitoExtension
@@ -12,6 +13,7 @@ import org.mockito.kotlin.any
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
+import java.util.Optional
 
 @ExtendWith(MockitoExtension::class)
 @SpringBootTest
@@ -48,6 +50,31 @@ class BlogServiceTest {
             val result = service.create(BlogFixture.createRequest)
 
             assertEquals(blog.name, result.name)
+        }
+    }
+
+    @Nested
+    inner class WhenUpdate {
+
+        @Test
+        fun `should return updated blog given blog with existing id`() {
+            val updated = BlogFixture.generate(id = 1, name = "AAPL")
+            `when`(repository.findById(any())).thenReturn(Optional.of(blog))
+            `when`(repository.save(any())).thenReturn(updated)
+
+            val result = service.update(BlogFixture.updateRequest)
+
+            assertEquals("AAPL", result.name)
+        }
+
+        @Test
+        fun `should throw error if blog not exist`() {
+            val nonexistentId: Long = 10
+            `when`(repository.findById(any())).thenReturn(Optional.empty())
+
+            assertThrows<IllegalArgumentException> {
+                service.update(BlogFixture.updateRequest.copy(id = nonexistentId))
+            }
         }
     }
 }
