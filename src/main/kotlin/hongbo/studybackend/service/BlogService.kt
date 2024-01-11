@@ -14,7 +14,6 @@ class BlogService(
 
     fun create(request: BlogCreateRequest): Blog {
         val blog = Blog(
-            id = 1,
             name = request.name
         )
         return repository.save(blog)
