@@ -24,7 +24,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 @ExtendWith(MockitoExtension::class)
 @WebMvcTest(value = [BlogController::class])
 class BlogControllerTest {
-
     companion object {
         const val BASE_PATH = "/api/v1/blog"
     }
@@ -42,14 +41,13 @@ class BlogControllerTest {
 
     @Nested
     inner class WhenQuery {
-
         @Test
         fun `should return blog given id`() {
             `when`(service.getById(any())).thenReturn(blog)
 
             mockMvc
                 .perform(
-                    get("$BASE_PATH/{id}", blog.id)
+                    get("$BASE_PATH/{id}", blog.id),
                 )
                 .andExpect(status().isOk)
         }
@@ -57,7 +55,6 @@ class BlogControllerTest {
 
     @Nested
     inner class WhenCreate {
-
         @Test
         fun `should create blog successfully`() {
             `when`(service.create(any())).thenReturn(blog)
@@ -66,7 +63,7 @@ class BlogControllerTest {
                 .perform(
                     post(BASE_PATH)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(BlogFixture.createRequest))
+                        .content(objectMapper.writeValueAsString(BlogFixture.createRequest)),
                 )
                 .andExpect(status().isCreated)
         }
@@ -74,7 +71,6 @@ class BlogControllerTest {
 
     @Nested
     inner class WhenUpdate {
-
         @Test
         fun `should return updated blog given new blog`() {
             val updated = BlogFixture.generate(id = 1, name = "AAPL")
@@ -84,7 +80,7 @@ class BlogControllerTest {
                 .perform(
                     put(BASE_PATH)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(BlogFixture.updateRequest))
+                        .content(objectMapper.writeValueAsString(BlogFixture.updateRequest)),
                 )
                 .andExpect(status().isOk)
         }
@@ -92,7 +88,6 @@ class BlogControllerTest {
 
     @Nested
     inner class WhenDelete {
-
         @Test
         fun `should delete blog given id`() {
             val nonexistentId = 1
@@ -100,7 +95,7 @@ class BlogControllerTest {
 
             mockMvc
                 .perform(
-                    delete("$BASE_PATH/{id}", nonexistentId)
+                    delete("$BASE_PATH/{id}", nonexistentId),
                 )
                 .andExpect(status().isOk)
         }

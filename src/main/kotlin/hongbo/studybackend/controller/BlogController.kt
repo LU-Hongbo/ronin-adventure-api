@@ -19,27 +19,34 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/v1/blog")
 class BlogController(
-    private val service: BlogService
+    private val service: BlogService,
 ) {
-
     @GetMapping("/{id}")
-    fun getById(@PathVariable id: Long): BlogResponse {
+    fun getById(
+        @PathVariable id: Long,
+    ): BlogResponse {
         return service.getById(id).toResponse()
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody blogCreateRequest: BlogCreateRequest): BlogResponse {
+    fun create(
+        @RequestBody blogCreateRequest: BlogCreateRequest,
+    ): BlogResponse {
         return service.create(blogCreateRequest).toResponse()
     }
 
     @PutMapping
-    fun update(@RequestBody blogUpdateRequest: BlogUpdateRequest): BlogResponse {
+    fun update(
+        @RequestBody blogUpdateRequest: BlogUpdateRequest,
+    ): BlogResponse {
         return service.update(blogUpdateRequest).toResponse()
     }
 
     @DeleteMapping("/{id}")
-    fun deleteById(@PathVariable id: Long) {
+    fun deleteById(
+        @PathVariable id: Long,
+    ) {
         service.deleteById(id)
     }
 }

@@ -21,7 +21,6 @@ import java.util.Optional
 @ExtendWith(MockitoExtension::class)
 @SpringBootTest
 class BlogServiceTest {
-
     @Autowired
     private lateinit var service: BlogService
 
@@ -32,7 +31,6 @@ class BlogServiceTest {
 
     @Nested
     inner class WhenQuery {
-
         @Test
         fun `should return blog given existent blog id`() {
             `when`(repository.findById(any())).thenReturn(Optional.of(blog))
@@ -55,7 +53,6 @@ class BlogServiceTest {
 
     @Nested
     inner class WhenCreate {
-
         @Test
         fun `should create blog successfully`() {
             `when`(repository.save(any())).thenReturn(blog)
@@ -68,7 +65,6 @@ class BlogServiceTest {
 
     @Nested
     inner class WhenUpdate {
-
         @Test
         fun `should return updated blog given blog with existing id`() {
             val updated = BlogFixture.generate(id = 1, name = "AAPL")
@@ -93,7 +89,6 @@ class BlogServiceTest {
 
     @Nested
     inner class WhenDelete {
-
         @Test
         fun `should return deleted blog given blog with existing id`() {
             `when`(repository.findById(any())).thenReturn(Optional.of(blog))

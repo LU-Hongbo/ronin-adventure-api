@@ -8,9 +8,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class BlogService(
-    private val repository: BlogRepository
+    private val repository: BlogRepository,
 ) {
-
     fun getById(id: Long): Blog {
         val blog = repository.findById(id)
         if (blog.isEmpty) {
@@ -20,9 +19,10 @@ class BlogService(
     }
 
     fun create(request: BlogCreateRequest): Blog {
-        val blog = Blog(
-            name = request.name
-        )
+        val blog =
+            Blog(
+                name = request.name,
+            )
         return repository.save(blog)
     }
 

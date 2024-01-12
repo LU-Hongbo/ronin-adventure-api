@@ -8,9 +8,9 @@ import jakarta.persistence.Table
 
 @Entity
 @Table(name = "blog")
-class Blog (
+class Blog(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
-    val name: String
+    val name: String,
 )

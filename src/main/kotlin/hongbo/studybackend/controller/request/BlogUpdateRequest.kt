@@ -4,11 +4,11 @@ import hongbo.studybackend.entity.Blog
 
 data class BlogUpdateRequest(
     val id: Long,
-    val name: String
+    val name: String,
 ) {
-
-    fun toEntity() = Blog(
-        id = id,
-        name = name
-    )
+    fun toEntity() =
+        Blog(
+            id = id,
+            name = name,
+        )
 }
