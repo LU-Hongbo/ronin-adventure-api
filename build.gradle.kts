@@ -43,3 +43,13 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+tasks.register<Copy>("initGitHooks") {
+    from("./git-hooks")
+    into(".git/hooks")
+    fileMode = Integer.parseInt("0755", 8)
+}
+
+tasks.named("build") {
+    dependsOn("initGitHooks")
+}

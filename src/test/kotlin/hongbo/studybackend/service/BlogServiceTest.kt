@@ -16,9 +16,11 @@ import org.mockito.kotlin.verify
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.boot.test.system.CapturedOutput
+import org.springframework.boot.test.system.OutputCaptureExtension
 import java.util.Optional
 
-@ExtendWith(MockitoExtension::class)
+@ExtendWith(MockitoExtension::class, OutputCaptureExtension::class)
 @SpringBootTest
 class BlogServiceTest {
     @Autowired
@@ -41,13 +43,14 @@ class BlogServiceTest {
         }
 
         @Test
-        fun `should throw error given nonexistent blog id`() {
+        fun `should throw error given nonexistent blog id`(output: CapturedOutput) {
             val nonexistentId = 10L
             `when`(repository.findById(any())).thenReturn(Optional.empty())
 
             assertThrows<IllegalArgumentException> {
                 service.getById(nonexistentId)
             }
+            assert(output.contains("Blog id $nonexistentId not exists."))
         }
     }
 
@@ -77,13 +80,14 @@ class BlogServiceTest {
         }
 
         @Test
-        fun `should throw error if blog not exist`() {
+        fun `should throw error if blog not exist`(output: CapturedOutput) {
             val nonexistentId: Long = 10
             `when`(repository.findById(any())).thenReturn(Optional.empty())
 
             assertThrows<IllegalArgumentException> {
                 service.update(BlogFixture.updateRequest.copy(id = nonexistentId))
             }
+            assert(output.contains("Blog id $nonexistentId not exists."))
         }
     }
 
@@ -100,15 +104,15 @@ class BlogServiceTest {
         }
 
         @Test
-        fun `should throw error if blog not exist`() {
+        fun `should throw error if blog not exist`(output: CapturedOutput) {
             val nonexistentId: Long = 10
             `when`(repository.findById(any())).thenReturn(Optional.empty())
 
             assertThrows<IllegalArgumentException> {
                 service.update(BlogFixture.updateRequest.copy(id = nonexistentId))
-
-                verify(repository, never()).deleteById(blog.id)
             }
+            verify(repository, never()).deleteById(blog.id)
+            assert(output.contains("Blog id $nonexistentId not exists."))
         }
     }
 }
