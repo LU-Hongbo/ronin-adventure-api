@@ -9,7 +9,7 @@ plugins {
     kotlin("plugin.jpa") version "1.9.21"
 }
 
-group = "hongbo"
+group = "ronin"
 version = "0.0.1-SNAPSHOT"
 
 java {

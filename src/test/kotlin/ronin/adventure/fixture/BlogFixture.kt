@@ -1,8 +1,8 @@
-package hongbo.studybackend.fixture
+package ronin.adventure.fixture
 
-import hongbo.studybackend.controller.request.BlogCreateRequest
-import hongbo.studybackend.controller.request.BlogUpdateRequest
-import hongbo.studybackend.entity.Blog
+import ronin.adventure.controller.request.BlogCreateRequest
+import ronin.adventure.controller.request.BlogUpdateRequest
+import ronin.adventure.entity.Blog
 
 object BlogFixture {
     val blog =

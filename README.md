@@ -1,8 +1,11 @@
-# Welcome to Hongbo's Blog
+# Welcome to Ronin Adventure
 
-From Jan 13, 2024.
+The content of the blog will contain information about
 
-This blog will contain information about moving to Canada, tech, personal 
+- Moving to Canada
+- Way of thinking
+- Tech
+- etc.
 
 
 ## Commit message format
@@ -21,5 +24,5 @@ Commit message type:
 
 e.g.
 ```
-[BLOG-109][Taylor] feat: implement createBlog()
+[BLOG-109][KUJO Jotaro] feat: Implement StarPlatium()
 ```

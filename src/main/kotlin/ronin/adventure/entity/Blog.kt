@@ -1,4 +1,4 @@
-package hongbo.studybackend.entity
+package ronin.adventure.entity
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue

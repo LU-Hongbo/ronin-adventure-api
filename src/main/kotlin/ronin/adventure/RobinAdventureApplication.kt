@@ -1,11 +1,11 @@
-package hongbo.studybackend
+package ronin.adventure
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class StudyBackendApplication
+class RobinAdventureApplication
 
 fun main(args: Array<String>) {
-    runApplication<StudyBackendApplication>(*args)
+    runApplication<RobinAdventureApplication>(*args)
 }

@@ -1,11 +1,11 @@
-package hongbo.studybackend.service
+package ronin.adventure.service
 
-import hongbo.studybackend.controller.request.BlogCreateRequest
-import hongbo.studybackend.controller.request.BlogUpdateRequest
-import hongbo.studybackend.entity.Blog
-import hongbo.studybackend.repository.BlogRepository
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
+import ronin.adventure.controller.request.BlogCreateRequest
+import ronin.adventure.controller.request.BlogUpdateRequest
+import ronin.adventure.entity.Blog
+import ronin.adventure.repository.BlogRepository
 
 @Service
 class BlogService(

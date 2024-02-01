@@ -1,8 +1,6 @@
-package hongbo.studybackend.controller
+package ronin.adventure.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import hongbo.studybackend.fixture.BlogFixture
-import hongbo.studybackend.service.BlogService
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -20,6 +18,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import ronin.adventure.fixture.BlogFixture
+import ronin.adventure.service.BlogService
 
 @ExtendWith(MockitoExtension::class)
 @WebMvcTest(value = [BlogController::class])

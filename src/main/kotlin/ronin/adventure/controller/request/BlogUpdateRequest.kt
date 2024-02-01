@@ -1,6 +1,6 @@
-package hongbo.studybackend.controller.request
+package ronin.adventure.controller.request
 
-import hongbo.studybackend.entity.Blog
+import ronin.adventure.entity.Blog
 
 data class BlogUpdateRequest(
     val id: Long,

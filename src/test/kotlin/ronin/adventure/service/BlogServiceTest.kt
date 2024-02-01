@@ -1,7 +1,5 @@
-package hongbo.studybackend.service
+package ronin.adventure.service
 
-import hongbo.studybackend.fixture.BlogFixture
-import hongbo.studybackend.repository.BlogRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -18,6 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.system.CapturedOutput
 import org.springframework.boot.test.system.OutputCaptureExtension
+import ronin.adventure.fixture.BlogFixture
+import ronin.adventure.repository.BlogRepository
 import java.util.Optional
 
 @ExtendWith(MockitoExtension::class, OutputCaptureExtension::class)

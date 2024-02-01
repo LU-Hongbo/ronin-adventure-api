@@ -1,1 +1,1 @@
-rootProject.name = "study-backend"
+rootProject.name = "ronin-adventure-api"

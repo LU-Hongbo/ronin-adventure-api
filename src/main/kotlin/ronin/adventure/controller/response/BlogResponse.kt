@@ -1,6 +1,6 @@
-package hongbo.studybackend.controller.response
+package ronin.adventure.controller.response
 
-import hongbo.studybackend.entity.Blog
+import ronin.adventure.entity.Blog
 
 data class BlogResponse(
     val id: Long,

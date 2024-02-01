@@ -1,10 +1,5 @@
-package hongbo.studybackend.controller
+package ronin.adventure.controller
 
-import hongbo.studybackend.controller.request.BlogCreateRequest
-import hongbo.studybackend.controller.request.BlogUpdateRequest
-import hongbo.studybackend.controller.response.BlogResponse
-import hongbo.studybackend.controller.response.BlogResponse.Companion.toResponse
-import hongbo.studybackend.service.BlogService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -15,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
+import ronin.adventure.controller.request.BlogCreateRequest
+import ronin.adventure.controller.request.BlogUpdateRequest
+import ronin.adventure.controller.response.BlogResponse
+import ronin.adventure.controller.response.BlogResponse.Companion.toResponse
+import ronin.adventure.service.BlogService
 
 @RestController
 @RequestMapping("/api/v1/blog")
