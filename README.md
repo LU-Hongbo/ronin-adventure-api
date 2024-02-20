@@ -24,5 +24,5 @@ Commit message type:
 
 e.g.
 ```
-[BLOG-109][KUJO Jotaro] feat: Implement StarPlatium()
+[BLOG-109][KUJO Jotaro] feat: Implement StarPlatium and theWorld()
 ```

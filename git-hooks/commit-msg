@@ -6,7 +6,7 @@ COMMIT_MSG=$(head -n 1 "$1")
 
 if ! [[ "$COMMIT_MSG" =~ $COMMIT_REGEX ]]; then
     echo "ERROR: Commit message format is invalid."
-    echo "Format should be: [BLOG-109][Taylor] feat: implement createBlog()"
+    echo "Format should be: [Ronin-109][KUJO Jotaro] feat: Implement StarPlatium and theWorld()"
     exit 1
 fi
 
